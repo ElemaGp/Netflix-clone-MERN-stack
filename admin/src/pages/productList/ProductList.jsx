@@ -49,6 +49,7 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
+            {/*The "pathname" and "movie: params.row" below means that "movie" object can now be used in the location this link will lead to bsed on the app.js. This is possible because i'll use "useLocation" to grab this "movie" object in that location. And then i can use the "movie" object's properties eg. movie.title, movie.desc etc */}
             <Link to={{pathname: "/product/" + params.row._id, movie: params.row }}>
               <button className="productListEdit">Edit</button>
             </Link>

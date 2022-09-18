@@ -3,7 +3,7 @@ import "./product.css";
 import { Publish } from "@material-ui/icons";
 
 export default function Product() {
-    const location = useLocation();
+    const location = useLocation(); //useLocation means that the value is taken from the link that will be clicked to displays that item (in this case, the movie). For this "movie", the link that will display the page is in "ProductList.jsx". 
     const movie = location.movie;
   return (
     <div className="product">
