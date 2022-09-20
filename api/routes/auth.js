@@ -10,7 +10,7 @@ router.post("/register", async (req, res) =>{
         email: req.body.email,
         password: CryptoJS.AES.encrypt(     //this hashes the password
           req.body.password, 
-          process.env.SECRET_KEY
+          process.env.SECRET_KEY  //and adds the secret key which i put in env file for this project
           ).toString(), 
     });
 

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-export default function Featured({type}) {          {/*passing "type" as a prop from Home component. If "type" is true, we'll see the series or movies when we click on it. */}
+export default function Featured({type, setGenre}) {          {/*passing "type" as a prop from Home component. If "type" is true, we'll see the series or movies when we click on it. */}
   const [content, setContent] = useState({});
 
   useEffect(()=>{
@@ -13,7 +13,7 @@ export default function Featured({type}) {          {/*passing "type" as a prop 
       try{
         const res = await axios.get(`/movies/random?type=${type}`, {
           headers:{
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMWQxN2I5ZjZiZTdjMzFjOGM4Mzg0MyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2MzA0MTQzNCwiZXhwIjoxNjYzNDczNDM0fQ.K8dd2k7gynuyToLZvKMpZqD_u-Oo3aIQcMr_DoxpEoY"
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMWQxN2I5ZjZiZTdjMzFjOGM4Mzg0MyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2MzcyNTU5MCwiZXhwIjoxNjY0MTU3NTkwfQ.uSYJIlNQKhvORmpXm21ZrJwUGYXXdPKVVgkCdNAfO7c"
           },
         });
         setContent(res.data[0]);
@@ -29,11 +29,12 @@ return (
     <div className="featured">
         {type && (              //if type is true or has a value...
             <div className="category">      
-                <span>{type === "movies" ? "Movies" : "Series"}</span>       {/*If "type" is equal to movies, then the span shoows "Movies", else it shows series */}
-                <select name="genre" id="genre">
-                    <option>Genre</option>
+                <span>{type === "movie" ? "Movies" : "Series"}</span>       {/*If "type" is equal to movie, then the span shoows "Movies", else it shows series */}
+                <select name="genre" id="genre" onChange={e=>setGenre(e.target.value)}>
+                    <option>Select Genre</option>
                     <option value="adventure">Adventure</option>
                     <option value="comedy">Comedy</option>
+                    <option value="action">Action</option>
                     <option value="crime">Crime</option>
                     <option value="fantasy">Fantasy</option>
                     <option value="historical">Historical</option>

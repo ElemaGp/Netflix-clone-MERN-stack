@@ -73,18 +73,18 @@ router.delete("/:id", verify, async (req, res)=>{  //the "verify" jwt middleware
     try{
         if(type=== "series"){
             movie = await Movie.aggregate([
-                { $match: {isSeries: true} }, //"isSeries" is one of the properties in the Movie model schema.
-                { $sample: { size: 1 } }, //this means the program should give you one random series.
+                { $match: {isSeries: true} }, //"isSeries" is one of the properties in the Movie model schema. The chosen movie will be one that the "isSeries" property is true.
+                { $sample: { size: 1 } }, //this means the program should give you one random series. 
             ]);
         } else {
             movie = await Movie.aggregate([
-                { $match: {isSeries: false} }, //"isSeries" is one of the properties in the Movie model schema.
+                { $match: {isSeries: false} }, //"isSeries" is one of the properties in the Movie model schema. The chosen movie will be one that the "isSeries" property is false.
                 { $sample: { size: 1 } }, //this means the program should give you one random movie.
             ]);
         }
         res.status(200).json(movie);
     }catch(err){
-        console.log(err);
+        res.status(500).json(err);
     }
 });
 
