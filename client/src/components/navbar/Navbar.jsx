@@ -2,9 +2,13 @@ import { ArrowDropDown, Notifications, Search } from "@material-ui/icons"
 import "./navbar.scss"
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import {AuthContext} from "../../authContext/AuthContext";
+import { logout } from "../../authContext/AuthActions";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false); //for setting the navbar to black or transparent depending on the "isScrolled" value.
+    const {dispatch} = useContext(AuthContext);
 
     window.onscroll = () =>{ //"windows.onscroll" listens for any scroll event on the browser
         setIsScrolled(window.pageYOffset === 0 ? false : true); //this means that if "window.pageYOffset" is equal to 0 ( meaning that the scrollbar is at the top of the page), setIsScroll is false. if it's more than 0, it means the scroolbar is not at the top so setIsScolled is set to true. 
@@ -21,10 +25,10 @@ const Navbar = () => {
             <span>Homepage</span>
             </Link>
             <Link to="/series" className="link">
-            <span>Series</span>
+            <span className="navbarmainLinks">Series</span>
             </Link>
             <Link to="/movies" className="link">
-            <span>Movies</span>
+            <span className="navbarmainLinks">Movies</span>
             </Link>
             <span>New and Popular</span>
             <span>My List</span>
@@ -38,7 +42,7 @@ const Navbar = () => {
               <ArrowDropDown className="icon" />
               <div className="options">
                 <span>Settings</span>
-                <span>Logout</span>
+                <span onClick={() => dispatch(logout())} >Logout</span>  {/*I'm "dispatching" the logout function directly from authAction since it only has one "case/type", and doesn't require an api call*/}
               </div>
             </div>
         </div>
