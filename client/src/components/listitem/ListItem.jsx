@@ -14,14 +14,14 @@ export default function ListItem({index, item}) {
   useEffect(()=>{
     const getMovie = async ()=>{
       try{
-        const res = await axios.get("/movies/find/"+item,{ //"item" here represents the id of each movie because that is what i set as the "content" properties of each lists array. The ids of the randomly generated movies.
-        headers:{
-          token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMWQxN2I5ZjZiZTdjMzFjOGM4Mzg0MyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2MzA0MTQzNCwiZXhwIjoxNjYzNDczNDM0fQ.K8dd2k7gynuyToLZvKMpZqD_u-Oo3aIQcMr_DoxpEoY"
-        },
+        const res = await axios.get("/movies/find/"+item,{ //"item" here represents the id of each movie because that is what i set as the "content" properties of each lists array. The ids of the randomly generated movies (because that's what is contained in the list.content which i iterated from). I just brought the "item"  here as a prop from "List" after mapping there.
+          headers:{
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMWQxN2I5ZjZiZTdjMzFjOGM4Mzg0MyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2MzcyNTU5MCwiZXhwIjoxNjY0MTU3NTkwfQ.uSYJIlNQKhvORmpXm21ZrJwUGYXXdPKVVgkCdNAfO7c"
+          },
       });
       setMovie(res.data);
       }catch(err){
-        console.log(err);
+        console.log("err");
       }
     };
     getMovie()
