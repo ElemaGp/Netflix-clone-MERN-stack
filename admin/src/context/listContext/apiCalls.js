@@ -1,6 +1,7 @@
 import axios from "axios"
 import {  createListFailure, createListStart, createListSuccess, deleteListFailure, deleteListStart, deleteListSuccess, getListsFailure, getListsStart, getListsSuccess } from "./ListActions"
 
+//get
 export const getLists = async (dispatch) => {
     dispatch(getListsStart());
   try{
