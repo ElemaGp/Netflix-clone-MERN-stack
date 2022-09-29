@@ -15,10 +15,10 @@ export default function ListItem({index, item}) {
     const getMovie = async ()=>{
       try{
         const res = await axios.get("/movies/find/"+item,{ //"item" here represents the id of each movie because that is what i set as the "content" properties of each lists array. The ids of the randomly generated movies (because that's what is contained in the list.content which i iterated from). I just brought the "item"  here as a prop from "List" after mapping there.
-          headers:{
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmFhZWM3ZjE2NWFhNWEwZmJjNWE4MyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NjM3NDc5ODEsImV4cCI6MTY2NDE3OTk4MX0.ryLl-Gn-Zqg4TsrNYVL25kX019KVXMokPHZr4Pl2PKA"
-          },
-      });
+          headers: {  
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken, 
+        }, 
+        });
       setMovie(res.data);
       }catch(err){
         console.log("err");
@@ -28,7 +28,7 @@ export default function ListItem({index, item}) {
   },[item]);
   
   return (
-    <Link to={{pathname: "/watch", movie: movie }}>
+    <Link to={{pathname: "/watch", movie: movie }}> {/*passing the "movie" object as a sort of prop into the "watch" component through the link. The "movie" by the right represents the movie we just fetched above. The "movie" by the left is us telling the code to call the movie object we just fetched "movie" in the "watch" component.*/}
     <div className="listItem"
     style={{left: isHovered && index * 225 - 50 + index * 2.5}} //if "isHovered" is true, "left" is "index * 225 -50"
     onMouseEnter={()=>setIsHovered(true)} 

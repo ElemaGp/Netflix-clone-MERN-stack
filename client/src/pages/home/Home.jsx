@@ -6,7 +6,7 @@ import List from "../../components/list/List"
 import Navbar from "../../components/navbar/Navbar"
 import "./home.scss"
 
-const Home = ({type}) => {
+const Home = ({type}) => {  //taking the "type" as prop from app.js
   const [lists, setLists] = useState([]);
   const [genre, setGenre] = useState(null);
 
@@ -15,11 +15,10 @@ const Home = ({type}) => {
     const getRandomLists = async ()=>{
       try{
         const res = await axios.get(`lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`,{
-          headers:{
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmFhZWM3ZjE2NWFhNWEwZmJjNWE4MyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NjM3NDc5ODEsImV4cCI6MTY2NDE3OTk4MX0.ryLl-Gn-Zqg4TsrNYVL25kX019KVXMokPHZr4Pl2PKA"
-          },
-        }
-        );
+          headers: {  
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken, 
+        }, 
+        });
         console.log(res);
         setLists(res.data);
       }catch(err){

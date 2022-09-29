@@ -1,25 +1,29 @@
 import { InfoOutlined, PlayArrow } from '@material-ui/icons'
-import React from 'react'
+import React, { useContext } from 'react'
 import "./featured.scss"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../authContext/AuthContext'
+import { logout } from "../../authContext/AuthActions";
 
 export default function Featured({type, setGenre}) {          {/*passing "type" and "setGenre" as a props from Home component. If "type" is true, we'll see the series or movies when we click on it. If "genre" is true, we'll see the genre */}
   const [content, setContent] = useState({});
+  const {dispatch} = useContext(AuthContext);
 
   useEffect(()=>{
     const getRandomContent = async ()=>{
       try{
         const res = await axios.get(`/movies/random?type=${type}`, {
-          headers:{
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmFhZWM3ZjE2NWFhNWEwZmJjNWE4MyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NjM3NDc5ODEsImV4cCI6MTY2NDE3OTk4MX0.ryLl-Gn-Zqg4TsrNYVL25kX019KVXMokPHZr4Pl2PKA"
-          },
+          headers: {  
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken, 
+        }, 
         });
         setContent(res.data[0]);
       }catch(err){
         console.log(err)
+        return dispatch(logout());
       }
     };
     getRandomContent();

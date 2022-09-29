@@ -3,7 +3,7 @@ import "./list.css";
 import { Publish } from "@material-ui/icons";
 
 export default function List() {
-    const location = useLocation(); //useLocation means that the value is taken from the link that will be clicked to displays that item (in this case, the list). For this list, the link that will display the page is in "ListList.jsx". 
+    const location = useLocation(); //useLocation means that the value is taken from the link that will be clicked to display that item (in this case, the list). For this list, the link that will be clicked to display the page is in "ListList.jsx". So basically, i've passed down the "list" values from "ListList" into this "List" page. Now i can use eg. list.title, list.genre etc here.
     const list = location.list;
   return (
     <div className="product">

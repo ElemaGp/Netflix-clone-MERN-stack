@@ -31,8 +31,8 @@ export default function NewProduct() {
         console.log("Upload is" + progress + "% done");
       },
       (err)=>{console.log(err)},()=>{    
-        uploadTask.snapshot.ref.getDownloadURL().then(url=>{ //storing the link of the files you just uploaded to firebase in your mongodb
-          setMovie((prev) => {
+        uploadTask.snapshot.ref.getDownloadURL().then(url=>{ //getting the link of the files you just uploaded to firebase 
+          setMovie((prev) => {  //putting the links in "movie"
             return { ...prev, [item.label]: url };
           });
           setUploaded((prev)=>prev + 1);
@@ -42,7 +42,7 @@ export default function NewProduct() {
     });
   };
   
-  //the "labels" below represents what they are in the "movies" model in the api.
+  //the "labels" below represents what they are in the "movies" model in the api. These are for the media files which will be uploaded to firebase.
   const handleUpload = (e) =>{
     e.preventDefault();
     upload([
