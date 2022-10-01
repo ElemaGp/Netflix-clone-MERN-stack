@@ -35,7 +35,7 @@ export default function NewProduct() {
           setMovie((prev) => {  //putting the links in "movie"
             return { ...prev, [item.label]: url };
           });
-          setUploaded((prev)=>prev + 1);
+          setUploaded((prev)=>prev + 1); //we do this count here because i set it below that when it gets to 5, it means the 5 files have been uploaded to firebase. The button then changes to "create" so that the file links and other string data can be sent to mongodb.
         });
       }
       );
