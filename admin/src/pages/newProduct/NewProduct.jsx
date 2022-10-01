@@ -31,18 +31,18 @@ export default function NewProduct() {
         console.log("Upload is" + progress + "% done");
       },
       (err)=>{console.log(err)},()=>{    
-        uploadTask.snapshot.ref.getDownloadURL().then(url=>{ //storing the link of the files you just uploaded to firebase in your mongodb
-          setMovie((prev) => {
+        uploadTask.snapshot.ref.getDownloadURL().then(url=>{ //getting the link of the files you just uploaded to firebase 
+          setMovie((prev) => {  //putting the links in "movie"
             return { ...prev, [item.label]: url };
           });
-          setUploaded((prev)=>prev + 1);
+          setUploaded((prev)=>prev + 1); //we do this count here because i set it below that when it gets to 5, it means the 5 files have been uploaded to firebase. The button then changes to "create" so that the file links and other string data can be sent to mongodb.
         });
       }
       );
     });
   };
   
-  //the "labels" below represents what they are in the "movies" model in the api.
+  //the "labels" below represents what they are in the "movies" model in the api. These are for the media files which will be uploaded to firebase. It's necessary to do this if you'll be uploading to firebase because the firebase code (which we took from the firebase documentation) needs it.
   const handleUpload = (e) =>{
     e.preventDefault();
     upload([

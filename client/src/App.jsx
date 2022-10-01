@@ -15,6 +15,7 @@ import {AuthContext} from "./authContext/AuthContext"
 
 function App() {
   const {user} = useContext(AuthContext);
+  
   return (
   <Router>
     <Switch>

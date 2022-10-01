@@ -9,7 +9,7 @@
     z-index: 999;
     background: linear-gradient(to top, transparent 0%, rgb(0,0,0,0.3) 50%);
 
-    &.scrolled{
+    &.scrolled{  //this means ".navbar.scrolled" in css meaning that its the exact same tag having both classes. (Not ".navbar .scrolled" or ".navbar > .scrolled" which means that scrolled is the className of an element inside .navbar) 
         background-color: var(--main-color);
     }
 
