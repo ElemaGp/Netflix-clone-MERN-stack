@@ -42,7 +42,7 @@ export default function NewProduct() {
     });
   };
   
-  //the "labels" below represents what they are in the "movies" model in the api. These are for the media files which will be uploaded to firebase.
+  //the "labels" below represents what they are in the "movies" model in the api. These are for the media files which will be uploaded to firebase. It's necessary to do this if you'll be uploading to firebase because the firebase code (which we took from the firebase documentation) needs it.
   const handleUpload = (e) =>{
     e.preventDefault();
     upload([
