@@ -33,7 +33,7 @@ export default function NewList() {
 
   
 
-  //sending the list's link uploaded in firebase to mongodb
+  
   const handleSubmit = (e)=> {
     e.preventDefault();
     createList(list, dispatch);

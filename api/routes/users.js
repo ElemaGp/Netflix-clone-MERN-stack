@@ -7,7 +7,7 @@ const verify = require('../verifyToken');
 
 router.put("/:id", verify, async (req, res)=>{  //the "verify" jwt middleware is used here
     if(req.user.id === req.params.id || req.user.isAdmin){
-        if(req.body.password){ //if the user tries meets the criteria above and wants to change password
+        if(req.body.password){ //if the user meets the criteria above and wants to change password (inputs a new password)
             req.body.password = CryptoJS.AES.encrypt(     //this hashes the password he inputs
                 req.body.password, 
                 process.env.SECRET_KEY
