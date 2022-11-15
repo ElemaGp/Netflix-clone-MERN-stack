@@ -10,7 +10,7 @@ export default function Register() {
 
     const emailRef = useRef(); //i've passed this ref into the email input tag. So it holds the value of whatever is typed into the email input field. It's an alternative to "e.taget.value".
     const passwordRef = useRef(); //i've passed this ref into the password input tag. So it holds the value of whatever is typed into the password input field. It's an alternative to "e.taget.value".
-    const usernameRef = useRef(); //i've passed this ref into the password input tag. So it holds the value of whatever is typed into the password input field. It's an alternative to "e.taget.value".
+    const usernameRef = useRef(); //i've passed this ref into the username input tag. So it holds the value of whatever is typed into the username input field. It's an alternative to "e.taget.value".
     const history = useHistory();
 
     const handleStart = ()=>{
