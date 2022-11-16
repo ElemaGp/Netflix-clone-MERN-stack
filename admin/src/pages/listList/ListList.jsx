@@ -36,7 +36,7 @@ export default function ListList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={{pathname: "/list/1", list: params.row }}> {/* the "pathname" means that useLocation can be used so i can use the "list" values in the "/list" component where this links to. The ending part which says "list: params.row" means that the value of the "params.row" in this component can be carried into the component where this is linked to which is "/lists", and the "params.row" will be brought in there using useLocation and it'll be called "list" there. Then you can do "const list = location.list" there, and have access to the lists properties eg. list.title, list.genre etc */}
+            <Link to={{pathname: "/list/" + params.row._id, list: params.row }}> {/* the "pathname" means that useLocation can be used so i can use the "list" values in the "/list" component where this links to. The ending part which says "list: params.row" means that the value of the "params.row" in this component can be carried into the component where this is linked to which is "/lists", and the "params.row" will be brought in there using useLocation and it'll be called "list" there. Then you can do "const list = location.list" there, and have access to the lists properties eg. list.title, list.genre etc */}
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline
