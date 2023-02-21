@@ -5,6 +5,8 @@ import { userRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+//so to explain how the table works. The "field" of each column represents the property of the "userRow" object it will contain. So if eg. the field is "email", it means that that coulumn (whose "headerName" you'll most likely name "Email") will have in the cells underneath it the "email" values of each userRow item. Now in the case where you dont want the value to be gotten directly using the "field", you can just give the field any name you like. Then create a "renderCell" where you basically write jsx to display whatever you want to in each cell underneath that column. To access any of the "userRow" properties from the renderCell, use "params.row.<thatProperty>".
+
 export default function UserList() {
   const [data, setData] = useState(userRows);
 

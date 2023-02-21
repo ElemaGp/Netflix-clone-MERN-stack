@@ -4,6 +4,7 @@ import storage from "../../firebase";
 import "./newProduct.css";
 import {MovieContext} from "../../context/movieContext/MovieContext";
 
+/* If you really want to understand this code, follow it starting from the jsx */
 
 export default function NewProduct() {
   const [movie, setMovie] = useState(null);
@@ -42,7 +43,7 @@ export default function NewProduct() {
     });
   };
   
-  //the "labels" below represents what they are in the "movies" model in the api. These are for the media files which will be uploaded to firebase. It's necessary to do this if you'll be uploading to firebase because the firebase code (which we took from the firebase documentation) needs it.
+  //These are for the media files which will be uploaded to firebase. It's necessary to do this if you'll be uploading to firebase because the firebase code (which we took from the firebase documentation) needs it.
   const handleUpload = (e) =>{
     e.preventDefault();
     upload([
@@ -54,7 +55,7 @@ export default function NewProduct() {
     ]);
   };
 
-  //sending the movie's link uploaded in firebase to mongodb
+  
   const handleSubmit = (e)=> {
     e.preventDefault();
     createMovie(movie, dispatch); //"createMovie" is the "apiCall" function for creating a new movie in mongodb.
@@ -67,7 +68,7 @@ export default function NewProduct() {
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-          <input type="file" id="img" name="img" onChange={(e) => setImg(e.target.files[0])} />
+          <input type="file" id="img" name="img" onChange={(e) => setImg(e.target.files[0])} />  {/* the "[0]" is there because this will only contain one file*/}
         </div>
         <div className="addProductItem">
           <label>Title image</label>
